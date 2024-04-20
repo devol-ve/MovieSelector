@@ -7,6 +7,16 @@ Window {
     visible: true
     title: qsTr("Movie Selector")
     color: "#CFE2E5"
+    id: page
+
+    //============================//
+    // signal
+    signal qmlRequireData(string msg)
+    //============================//
+    // slot
+    function qmlUpdateData(data: string) {
+        output.text = data
+    }
 
     Rectangle {
         id: inputRect
@@ -27,10 +37,13 @@ Window {
                 bottom: 1
                 top: 999999999
             }
+
             Keys.onReturnPressed: {
-                console.log("Enter pressed: " + textInput.text);
-                output.text = textInput.text;
-                buttonAnimation.start();
+                console.log("Enter pressed: " + text);
+                if(text !== "") {
+                    page.qmlRequireData(text);
+                    text = "";
+                }
             }
             Keys.onEscapePressed: {
                 close();
@@ -63,45 +76,45 @@ Window {
         id: buttonRect
         anchors.top: inputRect.bottom
         anchors.topMargin: 20
-        width: 100
-        height: 35
+        anchors.left: inputRect.left
+        anchors.leftMargin: 10
+        width: 85
+        height: 30
         radius: 5
         color: "#8DBFDA"
         border.width: 1
-        anchors.horizontalCenter: parent.horizontalCenter
 
         MouseArea {
             id: submit
             anchors.fill: buttonRect
             hoverEnabled: true
             onEntered: {
-                parent.color = "#B2E3FE"
+                if(textInput.text !== "")
+                    parent.color = "#B2E3FE"
             }
 
             onExited: {
                 parent.color = "#8DBFDA"
             }
 
-            //onClicked: {
-            //    console.log("Submit pressed: " + textInput.text);
-            //    output.text = textInput.text;
-            //    buttonAnimation.start();
-            //}
             onPressed: {
                 console.log("Submit pressed");
-                buttonPressedAnimation.start();
+                if(textInput.text !== "")
+                    buttonPressedAnimation.start();
             }
 
             onReleased: {
                 console.log("Submit released: " + textInput.text);
-                output.text = textInput.text;
-                buttonReleasedAnimation.start();
+                if(textInput.text !== ""){
+                    page.qmlRequireData(textInput.text);
+                    buttonReleasedAnimation.start();
+                }
             }
         }
 
         Text {
             id: label
-            text: qsTr("Submit")
+            text: qsTr("Select Movie")
             anchors.centerIn: buttonRect
         }
 
@@ -143,14 +156,15 @@ Window {
 
     Rectangle {
         id: exitRect
-        anchors.top: buttonRect.bottom
-        anchors.topMargin: 10
-        width: 100
-        height: 35
+        anchors.top: inputRect.bottom
+        anchors.topMargin: 20
+        anchors.right: inputRect.right
+        anchors.rightMargin: 10
+        width: 35
+        height: 30
         radius: 5
         color: "#8DBFDA"
         border.width: 1
-        anchors.horizontalCenter: parent.horizontalCenter
 
         MouseArea {
             id: exitbutton
