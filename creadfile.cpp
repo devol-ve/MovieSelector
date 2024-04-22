@@ -1,8 +1,6 @@
 #include "creadfile.h"
 
 CReadFile::CReadFile(const QString& filename, CFantasyMovies& movies) {
-    movies.stack_even.push(filename + "2"); // DEBUG - remove
-    movies.stack_odd.push(filename + "1");  // DEBUG - remove
 
     // Open file
     QFile file(filename);
@@ -13,13 +11,22 @@ CReadFile::CReadFile(const QString& filename, CFantasyMovies& movies) {
 
     // Push contents onto stack_odd and stack_even
     QTextStream in(&file);
+
+    // Regular Expression used to split line entry
+    // Matches a period followed by 2 or more whitespace characters
+    static const QRegularExpression regex("\\.\\s{2,}");
+
     while (!in.atEnd()) {
         QString line = in.readLine();
-        qDebug() << line; // DEBUG - remove
-        // TODO - Split line into number and movie title
+        // Split line into number and movie title
+        QStringList entries = line.split(regex, Qt::SkipEmptyParts);
 
-        // TODO - If number is odd, push movie title to stack_odd
-        // TODO - If number is even, push movie title to stack_even
+        // If number is odd, push movie title to stack_odd
+        if (entries[0].toInt() % 2)
+            movies.stack_odd.push(entries[1]);
+        // If number is even, push movie title to stack_even
+        else
+            movies.stack_even.push(entries[1]);
     }
 
 

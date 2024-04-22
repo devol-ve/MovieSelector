@@ -3,6 +3,7 @@
 
 #include <QFile>
 #include <QTextStream>
+#include <QRegularExpression>
 #include "cfantasymovies.h"
 
 class CReadFile

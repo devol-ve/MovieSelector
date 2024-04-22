@@ -33,6 +33,7 @@ Window {
             height: parent.height
             padding: 6
             focus: true
+            clip: true
             validator: IntValidator {
                 bottom: 1
                 top: 999999999
