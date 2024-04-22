@@ -16,10 +16,10 @@ void CFantasyMovies::cppGetRequest(const QString &msg) {
         movie = QStringLiteral("No other films available.");
     // If num is odd or stack_even is empty, select from stack_odd
     else if(!stack_odd.empty() && (num % 2 || stack_even.empty()))
-        movie = CRandom::choose(stack_odd, num);
+        movie = CRandom::choose(stack_odd);
     // If num is even or stack_odd is empty, select from stack_even
     else
-        movie = CRandom::choose(stack_even, num);
+        movie = CRandom::choose(stack_even);
 
     // Return movie to GUI
     emit cppReturnAnswer(movie);

@@ -40,7 +40,6 @@ Window {
             }
 
             Keys.onReturnPressed: {
-                console.log("Enter pressed: " + text);
                 if(text !== "") {
                     page.qmlRequireData(text);
                     text = "";
@@ -61,6 +60,13 @@ Window {
         font {
             pointSize: 12
             bold: true
+        }
+        onTextChanged: {
+            if (text === "No other films available."){
+                textInput.readOnly = true;
+                inputField.color = "#D5DDDD"
+                submitButton.color = "#B5BDBD"
+            }
         }
     }
 
@@ -95,17 +101,16 @@ Window {
             }
 
             onExited: {
-                parent.color = "#8DBFDA"
+                if (!textInput.readOnly)
+                    parent.color = "#8DBFDA"
             }
 
             onPressed: {
-                console.log("Submit pressed");
                 if(textInput.text !== "")
                     buttonPressedAnimation.start();
             }
 
             onReleased: {
-                console.log("Submit released: " + textInput.text);
                 if(textInput.text !== ""){
                     page.qmlRequireData(textInput.text);
                     buttonReleasedAnimation.start();
@@ -181,7 +186,6 @@ Window {
             }
 
             onClicked: {
-                console.log("exit");
                 close();
             }
         }

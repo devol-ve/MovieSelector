@@ -2,22 +2,32 @@
 
 CRandom::CRandom() {}
 
-QString CRandom::choose(std::stack<QString>& movie_stack, const int seed) {
+QString CRandom::choose(std::stack<QString>& movie_stack) {
     QString result = "";
+    std::random_device r;
+    std::mt19937 gen;
     std::stack<QString> temp_stack;
-    qDebug() << "Seed: " << seed; // DEBUG - remove
-    qDebug() << "Stack Size: " << movie_stack.size(); // DEBUG - remove
-    qDebug() << "Stack Top: " << movie_stack.top(); //DEBUG - remove
+    std::uniform_int_distribution<> distrib(0, movie_stack.size() - 1);
 
-    // TODO - Use seed to generate a random number between 0 and stack.size() - 1
+    // Generate a random number between 0 and movie_stack.size() - 1
+    gen.seed(r());
+    int rand = distrib(gen);
 
-    // TODO - While count < random number, push top of movie_stack to temp_stack
+    // While count < random number, push top of movie_stack to temp_stack
+    for (int count = 0; count < rand; count++) {
+        temp_stack.push(movie_stack.top());
+        movie_stack.pop();
+    }
 
     // Set result
     result = movie_stack.top();
     movie_stack.pop();
 
-    // TODO - Push contents of temp_stack to movie_stack
+    // Push contents of temp_stack to movie_stack
+    while (!temp_stack.empty()) {
+        movie_stack.push(temp_stack.top());
+        temp_stack.pop();
+    }
 
     return result;
 }

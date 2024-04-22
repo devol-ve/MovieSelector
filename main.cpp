@@ -14,8 +14,6 @@ int main(int argc, char *argv[])
 
     // Read input file into movie stacks
     CReadFile(filename, movies);
-    qDebug() << "Even: " << movies.stack_even.top();
-    qDebug() << "Odd: " << movies.stack_odd.top();
 
     // Main screen
     const QUrl url(QStringLiteral("qrc:/MovieSelector/Main.qml"));

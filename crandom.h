@@ -3,12 +3,13 @@
 
 #include <stack>
 #include <QDebug>
+#include <random>
 
 class CRandom
 {
 public:
     CRandom();
-    static QString choose(std::stack<QString>& movie_stack, const int seed = 123);
+    static QString choose(std::stack<QString>& movie_stack);
 };
 
 #endif // CRANDOM_H
