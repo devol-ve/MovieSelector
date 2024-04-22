@@ -19,7 +19,7 @@ Window {
     }
 
     Rectangle {
-        id: inputRect
+        id: inputField
         width: 150
         height: 30
         color: "#F5FDFD"
@@ -54,7 +54,7 @@ Window {
     Text {
         id: output
         text: qsTr("")
-        anchors.bottom: inputRect.top
+        anchors.bottom: inputField.top
         anchors.bottomMargin: 50
         anchors.horizontalCenter: parent.horizontalCenter
         font {
@@ -65,18 +65,18 @@ Window {
 
     Text {
         id: prompt
-        anchors.bottom: inputRect.top
+        anchors.bottom: inputField.top
         anchors.bottomMargin: 5
-        anchors.left: inputRect.left
+        anchors.left: inputField.left
 
         text: "Enter a number"
     }
 
     Rectangle {
-        id: buttonRect
-        anchors.top: inputRect.bottom
+        id: submitButton
+        anchors.top: inputField.bottom
         anchors.topMargin: 20
-        anchors.left: inputRect.left
+        anchors.left: inputField.left
         anchors.leftMargin: 10
         width: 85
         height: 30
@@ -86,7 +86,7 @@ Window {
 
         MouseArea {
             id: submit
-            anchors.fill: buttonRect
+            anchors.fill: parent
             hoverEnabled: true
             onEntered: {
                 if(textInput.text !== "")
@@ -113,16 +113,16 @@ Window {
         }
 
         Text {
-            id: label
+            id: submitLabel
             text: qsTr("Select Movie")
-            anchors.centerIn: buttonRect
+            anchors.centerIn: parent
         }
 
         SequentialAnimation {
             id: buttonPressedAnimation
 
             ColorAnimation {
-                target: buttonRect
+                target: parent
                 property: "color"
                 from: "#B2E3FE"
                 to: "#4D7F9A"
@@ -136,7 +136,7 @@ Window {
 
             ParallelAnimation{
                 ColorAnimation {
-                    target: buttonRect
+                    target: parent
                     property: "color"
                     from: "#4D8F9A"
                     to: "#B2E3FE"
@@ -155,10 +155,10 @@ Window {
     }
 
     Rectangle {
-        id: exitRect
-        anchors.top: inputRect.bottom
+        id: exitButton
+        anchors.top: inputField.bottom
         anchors.topMargin: 20
-        anchors.right: inputRect.right
+        anchors.right: inputField.right
         anchors.rightMargin: 10
         width: 35
         height: 30
@@ -167,8 +167,8 @@ Window {
         border.width: 1
 
         MouseArea {
-            id: exitbutton
-            anchors.fill: exitRect
+            id: exit
+            anchors.fill: parent
             hoverEnabled: true
 
             onEntered: {
@@ -186,9 +186,9 @@ Window {
         }
 
         Text {
-            id: exitlabel
+            id: exitLabel
             text: qsTr("Exit")
-            anchors.centerIn: exitRect
+            anchors.centerIn: parent
         }
     }
 }
