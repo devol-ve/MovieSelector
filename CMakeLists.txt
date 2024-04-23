@@ -21,6 +21,7 @@ qt_add_qml_module(appMovieSelector
         SOURCES creadfile.h creadfile.cpp
         SOURCES crandom.h crandom.cpp
         RESOURCES input.txt
+        RESOURCES marquee.jpg
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

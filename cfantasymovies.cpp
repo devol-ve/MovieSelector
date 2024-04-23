@@ -22,5 +22,5 @@ void CFantasyMovies::cppGetRequest(const QString &msg) {
         movie = CRandom::choose(stack_even);
 
     // Return movie to GUI
-    emit cppReturnAnswer(movie);
+    emit cppReturnAnswer(movie.toUpper());
 }

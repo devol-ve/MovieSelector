@@ -1,5 +1,5 @@
 1.    Star Wars: Episode IV - A New Hope
-2.    The Lord of the Rings: The Fellowship of the Ring
+2.    Antman and the Wasp
 3.    Harry Potter and the Sorcerer's Stone
 4.    The Matrix
 5.    Avatar
@@ -12,7 +12,7 @@
 12.   Guardians of the Galaxy
 13.   The Hunger Games
 14.   Star Trek: Into Darkness
-15.   The Chronicles of Narnia: The Lion, the Witch and the Wardrobe
+15.   Everything Everywhere All At Once
 16.   E.T. the Extra-Terrestrial
 17.   Jurassic Park
 18.   The Fifth Element
